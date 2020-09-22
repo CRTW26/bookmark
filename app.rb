@@ -9,6 +9,24 @@ class BookmarkManager < Sinatra::Base
   #   @bookmark = Bookmark
   # end
 
+  get '/' do 
+    erb(:index)
+  end 
+
+  get '/add_bookmark' do 
+    erb(:add_bookmark)
+  end 
+
+  post '/add_to_database' do 
+    url = params[:bookmark]
+    Bookmark.create(url)
+    redirect '/confirmation'
+  end 
+
+  get '/confirmation' do
+    "Bookmark Added!" 
+  end 
+
   get '/bookmarks' do
     p ENV['RACK_ENV']
     @bookmark = Bookmark.all
