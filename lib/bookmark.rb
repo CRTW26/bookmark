@@ -1,20 +1,24 @@
 # frozen_string_literal: true
 require 'pg'
 class Bookmark
-  attr_reader :bookmark, :connection
-  BOOKMARKS = ['www.google.com', 'www.reddit.com', 'www.youtube.com'].freeze
+  attr_reader :connection, :id, :title, :url
+
+  def initialize(id, title, url)
+    @id = id
+    @title = title
+    @url = url 
+  end 
 
   def self.all
     Bookmark.set_environment
-    table = @connection.exec('SELECT title FROM bookmarks')
-    titles = []
-    table.each { |title| titles << title.values.join('')}
-    urls.join('\n')
+    result = @connection.exec('SELECT * FROM bookmarks')
+    result.map {|bookmark| Bookmark.new(bookmark['id'], bookmark['title'], bookmark['url'])}
   end
 
   def self.create(url, title)
     Bookmark.set_environment
-    @connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{url}', '#{title}');")
+    result = @connection.exec("INSERT INTO bookmarks (url, title) VALUES ('#{url}', '#{title}');")
+    Bookmark.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
   
   def self.set_environment 
