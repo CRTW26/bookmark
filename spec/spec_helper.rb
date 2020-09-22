@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ENV['RACK_ENV'] = 'test'
+ENV['ENVIRONMENT'] = 'test'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
