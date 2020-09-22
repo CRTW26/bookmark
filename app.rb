@@ -19,7 +19,8 @@ class BookmarkManager < Sinatra::Base
 
   post '/add_to_database' do 
     url = params[:bookmark]
-    Bookmark.create(url)
+    title = params[:title]
+    Bookmark.create(url, title)
     redirect '/confirmation'
   end 
 
@@ -28,7 +29,6 @@ class BookmarkManager < Sinatra::Base
   end 
 
   get '/bookmarks' do
-    p ENV['RACK_ENV']
     @bookmark = Bookmark.all
     erb(:bookmark)
   end
