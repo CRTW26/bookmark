@@ -1,28 +1,19 @@
-##User Story
-  as a user
-  so that I can view my bookmarks
-  I want the program to show me a list of bookmarks
+# Bookmark Manager
 
-  #Domain model for above user story
-    alias user
-  alias client
-  alias controller
-  alias model
-  alias view
+A tool to be able to manage your bookmarks.
 
-  user->client:" show me a list"
-  client->controller: "/get bookmarks"
-  controller->model: "code to get bookmarks"
-  model-->controller: "bookmarks information"
-  controller-->view: "bookmarks information"
-  view-->client: "html response of bookmakrs"
-  client-->client: "renders html"
-  client-->user: "displays html"
+## User Story
+As a user
+So that I can view my bookmarks
+I want the program to show me a list of bookmarks
 
+As a user 
+I would like to store urls as bookmarks
+So that I can view it later
 
-##DataBase set up
- - connect to psql
- - CREATE DATABASE "bookmarks";
- - \c "bookmarks";
- - CREATE TABLE bookmarks (id SERIAL PRIMARY KEY, url VARCHAR(60));
- - 
+## DataBase setup
+connect to psql
+Run the SQL commands in the ./db/migrations/01_create_bookmarks_table.sql file;
+
+## Running tests
+You can run the Rspec tests by navigating to the root directory of this repository and typing 'RSPEC' into the terminal
