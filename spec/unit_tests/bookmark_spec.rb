@@ -41,6 +41,15 @@ RSpec.describe Bookmark do
      Bookmark.delete(id: bookmark.id)
      expect(Bookmark.all.length).to eq 0
     end 
+  end
+  
+  describe '.update' do 
+    it 'updates bookmark' do
+      bookmark = Bookmark.create("http://www.makersacademy.com", "Makers Academy") 
+      Bookmark.update(540, 'google', 'www.google.com')
+      expect(Bookmark.all[0].title).to include('google')
+      expect(Bookmark.all[0].title).not_to include('Makers Academy')
+    end 
   end 
 
 end 

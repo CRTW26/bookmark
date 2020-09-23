@@ -7,6 +7,11 @@
       <input type='hidden' name='_method' value='DELETE'/>
       <input type='submit' value='Delete'>
     </form>
+    <form action="/bookmarks/<%= bookmark.id %>" method="post">
+    <input type='text' name='url' placeholder='Enter URL'>
+    <input type='text' name='title' placeholder='Enter Title'>
+    <input type='submit' value='Update'>
+    </form>
   </li>
 <% end %>
 </ul>
