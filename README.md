@@ -12,8 +12,8 @@ I would like to store urls as bookmarks
 So that I can view it later
 
 ## DataBase setup
-connect to psql
-Run the SQL commands in the ./db/migrations/01_create_bookmarks_table.sql file;
+- connect to psql
+- Run the SQL commands in the ./db/migrations/01_create_bookmarks_table.sql file;
 
 ## Running tests
 You can run the Rspec tests by navigating to the root directory of this repository and typing 'RSPEC' into the terminal
