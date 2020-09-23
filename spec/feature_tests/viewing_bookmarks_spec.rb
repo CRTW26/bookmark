@@ -2,19 +2,14 @@
 
 feature 'viewing bookmarks' do
   scenario '/bookmarks shows a list of bookmarks' do
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-    connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');
-    INSERT INTO bookmarks (url) VALUES ('http://askjeeves.com');
-    INSERT INTO bookmarks (url) VALUES ('http://twitter.com');
-    INSERT INTO bookmarks (url) VALUES ('http://www.google.com');
-    DELETE from bookmarks WHERE url='http://twitter.com';
-    UPDATE bookmarks SET url = 'http://www.destroyallsoftware.com' WHERE url = 'http://askjeeves.com';")
-
+    Bookmark.create('http://www.makersacademy.com','Makers Academy')
+    Bookmark.create('http://www.destroyallsoftware.com','Destroy All Software')
+    Bookmark.create('http://www.google.com', 'Google')
 
     visit('/bookmarks')
-    expect(page).to have_content 'http://www.makersacademy.com'
-    expect(page).to have_content 'http://www.google.com'
-    expect(page).to have_content 'http://www.destroyallsoftware.com'
+    expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
+    expect(page).to have_link('Destroy All Software',  href: 'http://www.destroyallsoftware.com')
+    expect(page).to have_link('Google', href: 'http://www.google.com')
   end
 
 
