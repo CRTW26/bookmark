@@ -1,3 +1,13 @@
+<%= flash[:invalid] %>
+
+<% flash.keys.each do |type| %>
+ <% puts flash.keys %>
+  <div data-alert class="flash <%= type %> alert-box radius">
+    <%= flash[type] %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
+
 <ul>
 <% @bookmark_list.each do |bookmark|%>
   <li>
