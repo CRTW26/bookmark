@@ -22,9 +22,9 @@ class Bookmark
     Bookmark.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
 
-  def self.delete(id:)
+  def self.delete(id)
     Bookmark.set_environment
-    DatabaseConnection.query("DELETE FROM bookmarks WHERE id = #{id}")
+    DatabaseConnection.query("DELETE * FROM bookmarks WHERE id = #{id}")
   end
   
   def self.update(id, new_title, new_url)
